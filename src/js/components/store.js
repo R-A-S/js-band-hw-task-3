@@ -1,8 +1,8 @@
 // Components
-import Truck from './classes/transports/truck';
-import Ship from './classes/transports/ship';
+import transportFactory from './classes/transports/tansportFactory';
 import CostOfDelivery from './classes/costOfDelivery';
 import Render from './render';
+import localStorage from './loocalStorageService';
 
 // Store
 export default class Store {
@@ -37,10 +37,18 @@ export default class Store {
       const capacity = form.querySelector('#shipCapacity').value;
       const averageSpeed = form.querySelector('#speedNm').value;
 
-      const newShip = new Ship(name, countOfTeam, id, model, producedYear, capacity, averageSpeed, type);
+      const newShip = transportFactory.createTransport(
+        type,
+        { name, countOfTeam },
+        id,
+        model,
+        producedYear,
+        capacity,
+        averageSpeed
+      );
 
       this.store[0][0].push(newShip);
-      localStorage['.store'] = JSON.stringify(this.store);
+      localStorage.setItem('Store', this.store);
     }
     if (type === 'newTruck') {
       const license = form.querySelector('#license').value;
@@ -50,10 +58,18 @@ export default class Store {
       const capacity = form.querySelector('#truckCapacity').value;
       const averageSpeed = form.querySelector('#speedKm').value;
 
-      const newTruck = new Truck(license, gasType, id, model, producedYear, capacity, averageSpeed, type);
+      const newTruck = transportFactory.createTransport(
+        type,
+        { license, gasType },
+        id,
+        model,
+        producedYear,
+        capacity,
+        averageSpeed
+      );
 
       this.store[0][1].push(newTruck);
-      localStorage['.store'] = JSON.stringify(this.store);
+      localStorage.setItem('Store', this.store);
     }
     if (type === 'cost') {
       const transportModel = form.querySelector('#transportModel').value;
@@ -63,7 +79,7 @@ export default class Store {
       const newCostOfDelivery = new CostOfDelivery(transportModel, costKg, costKm);
 
       this.store[1].push(newCostOfDelivery);
-      localStorage['.store'] = JSON.stringify(this.store);
+      localStorage.setItem('Store', this.store);
     }
 
     Render.addElements(this.store);
