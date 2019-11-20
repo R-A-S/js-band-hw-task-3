@@ -1,0 +1,91 @@
+body {
+  font-size: 14px;
+}
+ul {
+  border: 1px solid #000;
+  margin: 10px;
+}
+ul li {
+  list-style-type: none;
+  overflow: hidden;
+  display: flex;
+  height: 27px;
+}
+
+ul p {
+  color: #7c7d7f;
+}
+ul span {
+  float: left;
+  width: 120px;
+}
+
+.container {
+  height: 100%;
+  margin: 0;
+}
+form {
+  width: 100%;
+}
+form label {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 0.5fr;
+  grid-template-areas: "create addedTransport addedTostOfDelivery";
+}
+
+.create {
+  grid-area: create;
+  display: grid;
+  grid-template-columns: 270px 270px 270px;
+  grid-template-areas: "ship truck cost";
+}
+
+.ship {
+  grid-area: ship;
+}
+
+.truck {
+  grid-area: truck;
+}
+
+.cost {
+  grid-area: cost;
+}
+
+fieldset {
+  height: 350px;
+}
+
+.addedTransport {
+  grid-area: addedTransport;
+  .transportContainer {
+    display: flex;
+    width: 100%;
+    div {
+      width: 50%;
+      div {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.addedTostOfDelivery {
+  grid-area: addedTostOfDelivery;
+}
+
+@media (max-width: 1800px) {
+  .container {
+    grid-template-columns: 1fr;
+
+    grid-template-areas: "create create create" " addedTransport addedTransport addedTostOfDelivery";
+  }
+}
+
+@import "./components/normalize.scss";

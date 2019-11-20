@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <title>JS Band Delivery</title>
+  </head>
+  <body>
+    <h2>Create new:</h2>
+    <main class="container">
+      <section class="create">
+        <form class="newShip" id="newShip">
+          <fieldset>
+            <legend>Ship</legend>
+
+            <label for="shipModel">Model</label
+            ><input type="text" id="shipModel" required />
+
+            <label for="name">Serial number/Name </label
+            ><input type="text" id="name" required />
+
+            <label for="shipYear">Produced year </label
+            ><input type="number" id="shipYear" required />
+
+            <label for="shipCapacity">Capacity (in kg) </label
+            ><input type="number" id="shipCapacity" required />
+
+            <label for="speedNm">Average speed (in nm) </label
+            ><input type="number" id="speedNm" required />
+
+            <label for="team">Count of team </label
+            ><input type="number" id="team" required />
+            <label for=""></label>
+            <input type="reset" value="Clear" />
+            <input type="submit" value="Save" />
+          </fieldset>
+        </form>
+        <form class="truck" id="newTruck">
+          <fieldset>
+            <legend>Truck</legend>
+
+            <label for="truckModel">Model</label
+            ><input type="text" id="truckModel" required />
+
+            <label for="license">License plate</label
+            ><input type="text" id="license" required />
+
+            <label for="truckYear">Produced year </label
+            ><input type="number" id="truckYear" required />
+
+            <label for="capacity">Capacity (in kg) </label
+            ><input type="number" id="truckCapacity" required />
+
+            <label for="speedKm">Average speed (in km) </label
+            ><input type="number" id="speedKm" required />
+
+            <label for="gas">Type of gas </label
+            ><select name="gas" id="gas">
+              <option value="gasoline">Gasoline</option>
+              <option value="diesel">Diesel</option>
+              <option value="electric">Electric</option>
+            </select>
+            <label for=""></label>
+            <input type="reset" value="Clear" />
+            <input type="submit" value="Save" />
+          </fieldset>
+        </form>
+
+        <form class="cost" id="cost">
+          <fieldset>
+            <legend>Cost of delivery</legend>
+
+            <label for="transportModel">Transport Model</label
+            ><input type="text" id="transportModel" required />
+
+            <label for="costKg">Cost (by 1 kg of cargo) </label
+            ><input type="number" id="costKg" required />
+
+            <label for="costKm">Cost (by 1 km of distance)</label
+            ><input type="number" id="costKm" required />
+            <label for=""></label>
+            <input type="reset" value="Clear" />
+            <input type="submit" value="Save" />
+          </fieldset>
+        </form>
+      </section>
+      <section class="addedTransport" id="addedTransport">
+        <h2>Added transport</h2>
+        <form id="capacity">
+          <input
+            type="submit"
+            value="Change displayed weight unit of capacity (kg / lb)"
+          />
+        </form>
+
+        <div class="transportContainer">
+          <div>
+            <h4>Ships:</h4>
+            <div class="addedShips" id="addedShips"></div>
+          </div>
+          <div>
+            <h4>Trucks:</h4>
+            <div class="addedTrucks" id="addedTrucks"></div>
+          </div>
+        </div>
+      </section>
+      <section class="addedCostOfDelivery" id="addedCostOfDelivery">
+        <h2>Added cost of delivery</h2>
+        <div class="addedCosts" id="addedCosts"></div>
+      </section>
+    </main>
+  </body>
+</html>
