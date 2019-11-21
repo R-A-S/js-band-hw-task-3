@@ -14,9 +14,9 @@ export default class Render {
     while (addedCosts.hasChildNodes()) {
       addedCosts.removeChild(addedCosts.lastChild);
     }
-    store[0][0].map(ship => Render.domRender(ship, addedShips));
-    store[0][1].map(truck => Render.domRender(truck, addedTrucks));
-    store[1].map(cost => Render.domRender(cost, addedCosts));
+    store.transport.ships.map(ship => Render.domRender(ship, addedShips));
+    store.transport.trucks.map(truck => Render.domRender(truck, addedTrucks));
+    store.costOfDelivery.map(cost => Render.domRender(cost, addedCosts));
   }
 
   static domRender(element, place) {
@@ -65,7 +65,7 @@ export default class Render {
             </li>
             <li class="element__list-item">
               <span>Average Speed: </span>
-              <span>${element.averageSpeed}${element.speedUnit}</span>
+              <span>${element.averageSpeed}</span>
             </li>
             <li class="element__list-item">
               <span>${element.countOfTeam ? 'Count Of Team: ' : 'Type of gas: '}</span>
