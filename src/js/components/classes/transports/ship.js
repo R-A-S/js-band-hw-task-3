@@ -7,5 +7,10 @@ export default class Ship extends BaseTransport {
     super(...args);
     this.name = name;
     this.countOfTeam = countOfTeam;
+    this.showAverageSpeed();
+  }
+
+  showAverageSpeed() {
+    super.showAverageSpeed('nm');
   }
 }

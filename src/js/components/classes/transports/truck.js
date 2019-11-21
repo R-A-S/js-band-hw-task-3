@@ -5,7 +5,13 @@ import BaseTransport from './baseTransport';
 export default class Truck extends BaseTransport {
   constructor(license, gasType, ...args) {
     super(...args);
+
     this.license = license;
     this.gasType = gasType;
+    this.showAverageSpeed();
+  }
+
+  showAverageSpeed() {
+    super.showAverageSpeed('km');
   }
 }

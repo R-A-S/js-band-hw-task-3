@@ -17,6 +17,10 @@ class LocalStorage {
   setItem(key, value) {
     window.localStorage.setItem(`${LocalStorage.prefix}${key}`, JSON.stringify(value));
   }
+
+  removeItem(key) {
+    return JSON.parse(window.localStorage.removeItem(`${LocalStorage.prefix}${key}`));
+  }
 }
 
 const localStorage = new LocalStorage();

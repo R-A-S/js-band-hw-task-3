@@ -12,16 +12,13 @@ export default class Store {
 
   static trucks = [];
 
-  static transport = [Store.ships, Store.trucks];
+  static transport = { ships: Store.ships, trucks: Store.trucks };
 
-  static store = [Store.transport, Store.costOfDelivery];
+  static store = { transport: Store.transport, costOfDelivery: Store.costOfDelivery };
 
-  static updateCapacity(e) {
-    e.preventDefault();
-    this.store[0][0].forEach(elem => elem.showCapacityInPounds());
-    this.store[0][1].forEach(elem => elem.showCapacityInPounds());
-    Render.addElements(this.store);
-  }
+  static localStore = !localStorage.getItem('Store')
+    ? { transport: { ships: [], trucks: [] }, costOfDelivery: [] }
+    : localStorage.getItem('Store');
 
   static create(e) {
     e.preventDefault();
@@ -29,14 +26,30 @@ export default class Store {
     const type = e.target.id;
     const id = `${(+new Date()).toString(16)}`;
 
-    if (type === 'newShip') {
-      const name = form.querySelector('#name').value;
-      const countOfTeam = form.querySelector('#team').value;
-      const model = form.querySelector('#shipModel').value;
-      const producedYear = form.querySelector('#shipYear').value;
-      const capacity = form.querySelector('#shipCapacity').value;
-      const averageSpeed = form.querySelector('#speedNm').value;
+    if (type === 'newTruck' || type === 'newShip') {
+      Store.createTransport(form, type, id);
+    }
+    if (type === 'cost') {
+      Store.createCost(form);
+    }
+    Render.addElements(this.store);
+  }
 
+  static updateCapacity(e) {
+    e.preventDefault();
+    this.store.transport.ships.forEach(elem => elem.showCapacityInPounds());
+    this.store.transport.trucks.forEach(elem => elem.showCapacityInPounds());
+    Render.addElements(this.store);
+  }
+
+  static createTransport(form, type, id) {
+    const model = form.model.value;
+    const producedYear = form.year.value;
+    const capacity = form.capacity.value;
+    const averageSpeed = form.speed.value;
+    if (type === 'newShip') {
+      const name = form.name.value;
+      const countOfTeam = form.team.value;
       const newShip = transportFactory.createTransport(
         type,
         { name, countOfTeam },
@@ -47,17 +60,13 @@ export default class Store {
         averageSpeed
       );
 
-      this.store[0][0].push(newShip);
-      localStorage.setItem('Store', this.store);
+      this.store.transport.ships.push(newShip);
+      this.localStore.transport.ships.push(newShip);
+      localStorage.setItem('Store', this.localStore);
     }
     if (type === 'newTruck') {
-      const license = form.querySelector('#license').value;
-      const gasType = form.querySelector('#gas').value;
-      const model = form.querySelector('#truckModel').value;
-      const producedYear = form.querySelector('#truckYear').value;
-      const capacity = form.querySelector('#truckCapacity').value;
-      const averageSpeed = form.querySelector('#speedKm').value;
-
+      const license = form.license.value;
+      const gasType = form.gas.value;
       const newTruck = transportFactory.createTransport(
         type,
         { license, gasType },
@@ -68,20 +77,20 @@ export default class Store {
         averageSpeed
       );
 
-      this.store[0][1].push(newTruck);
-      localStorage.setItem('Store', this.store);
+      this.store.transport.trucks.push(newTruck);
+      this.localStore.transport.trucks.push(newTruck);
+      localStorage.setItem('Store', this.localStore);
     }
-    if (type === 'cost') {
-      const transportModel = form.querySelector('#transportModel').value;
-      const costKg = form.querySelector('#costKg').value;
-      const costKm = form.querySelector('#costKm').value;
+  }
 
-      const newCostOfDelivery = new CostOfDelivery(transportModel, costKg, costKm);
+  static createCost(form) {
+    const transportModel = form.transportModel.value;
+    const costKg = form.costKg.value;
+    const costKm = form.costKm.value;
+    const newCostOfDelivery = new CostOfDelivery(transportModel, costKg, costKm);
 
-      this.store[1].push(newCostOfDelivery);
-      localStorage.setItem('Store', this.store);
-    }
-
-    Render.addElements(this.store);
+    this.store.costOfDelivery.push(newCostOfDelivery);
+    this.localStore.costOfDelivery.push(newCostOfDelivery);
+    localStorage.setItem('Store', this.localStore);
   }
 }

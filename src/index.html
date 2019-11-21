@@ -16,22 +16,22 @@
             <legend>Ship</legend>
 
             <label for="shipModel">Model</label
-            ><input type="text" id="shipModel" required />
+            ><input type="text" name="model" id="shipModel" required />
 
             <label for="name">Serial number/Name </label
-            ><input type="text" id="name" required />
+            ><input type="text" name="name" id="name" required />
 
             <label for="shipYear">Produced year </label
-            ><input type="number" id="shipYear" required />
+            ><input type="number" name="year" id="shipYear" required />
 
             <label for="shipCapacity">Capacity (in kg) </label
-            ><input type="number" id="shipCapacity" required />
+            ><input type="number" name="capacity" id="shipCapacity" required />
 
             <label for="speedNm">Average speed (in nm) </label
-            ><input type="number" id="speedNm" required />
+            ><input type="number" name="speed" id="speedNm" required />
 
             <label for="team">Count of team </label
-            ><input type="number" id="team" required />
+            ><input type="number" name="team" id="team" required />
             <label for=""></label>
             <input type="reset" value="Clear" />
             <input type="submit" value="Save" />
@@ -42,19 +42,19 @@
             <legend>Truck</legend>
 
             <label for="truckModel">Model</label
-            ><input type="text" id="truckModel" required />
+            ><input type="text" name="model" id="truckModel" required />
 
             <label for="license">License plate</label
-            ><input type="text" id="license" required />
+            ><input type="text" name="license" id="license" required />
 
             <label for="truckYear">Produced year </label
-            ><input type="number" id="truckYear" required />
+            ><input type="number" name="year" id="truckYear" required />
 
             <label for="capacity">Capacity (in kg) </label
-            ><input type="number" id="truckCapacity" required />
+            ><input type="number" name="capacity" id="truckCapacity" required />
 
             <label for="speedKm">Average speed (in km) </label
-            ><input type="number" id="speedKm" required />
+            ><input type="number" name="speed" id="speedKm" required />
 
             <label for="gas">Type of gas </label
             ><select name="gas" id="gas">
@@ -73,13 +73,18 @@
             <legend>Cost of delivery</legend>
 
             <label for="transportModel">Transport Model</label
-            ><input type="text" id="transportModel" required />
+            ><input
+              type="text"
+              name="transportModel"
+              id="transportModel"
+              required
+            />
 
             <label for="costKg">Cost (by 1 kg of cargo) </label
-            ><input type="number" id="costKg" required />
+            ><input type="number" name="costKg" id="costKg" required />
 
             <label for="costKm">Cost (by 1 km of distance)</label
-            ><input type="number" id="costKm" required />
+            ><input type="number" name="costKm" id="costKm" required />
             <label for=""></label>
             <input type="reset" value="Clear" />
             <input type="submit" value="Save" />

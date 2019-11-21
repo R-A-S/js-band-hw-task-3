@@ -1,11 +1,10 @@
 export default class BaseTransport {
-  constructor(id, model, producedYear, capacity, averageSpeed, type) {
+  constructor(id, model, producedYear, capacity, averageSpeed) {
     this.id = id;
     this.model = model;
     this.producedYear = producedYear;
     this.capacity = capacity;
     this.averageSpeed = averageSpeed;
-    this.speedUnit = BaseTransport.showAverageSpeed(type);
     this.weightUnit = 'kg';
   }
 
@@ -13,11 +12,11 @@ export default class BaseTransport {
     switch (this.weightUnit) {
       case 'kg':
         this.weightUnit = 'lb';
-        this.capacity = this.capacity * 2.205;
+        this.capacity = (this.capacity * 2.205).toFixed(2);
         break;
       case 'lb':
         this.weightUnit = 'kg';
-        this.capacity = this.capacity / 2.205;
+        this.capacity = (this.capacity / 2.205).toFixed(2);
         break;
 
       default:
@@ -25,19 +24,7 @@ export default class BaseTransport {
     }
   }
 
-  static showAverageSpeed = type => {
-    let unit;
-    switch (type) {
-      case 'newShip':
-        unit = 'nm';
-        break;
-      case 'newTruck':
-        unit = 'km';
-        break;
-
-      default:
-        break;
-    }
-    return unit;
-  };
+  showAverageSpeed(speedUnit) {
+    this.averageSpeed = `${this.averageSpeed}${speedUnit}`;
+  }
 }

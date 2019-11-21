@@ -24,9 +24,9 @@ class TransportFactory {
     this.setTransportClass(type);
     switch (type) {
       case 'newTruck':
-        return new this.transportClass(props.license, props.gasType, ...args, type);
+        return new this.transportClass(props.license, props.gasType, ...args);
       case 'newShip':
-        return new this.transportClass(props.name, props.countOfTeam, ...args, type);
+        return new this.transportClass(props.name, props.countOfTeam, ...args);
       default:
         return null;
     }
