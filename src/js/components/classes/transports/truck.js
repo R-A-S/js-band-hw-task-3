@@ -8,10 +8,10 @@ export default class Truck extends BaseTransport {
 
     this.license = license;
     this.gasType = gasType;
-    this.showAverageSpeed();
+    this.averageSpeed = this.showAverageSpeed();
   }
 
   showAverageSpeed() {
-    super.showAverageSpeed('km');
+    return `${super.showAverageSpeed()}km`;
   }
 }

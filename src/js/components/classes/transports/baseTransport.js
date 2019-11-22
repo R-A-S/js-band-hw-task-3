@@ -24,7 +24,7 @@ export default class BaseTransport {
     }
   }
 
-  showAverageSpeed(speedUnit) {
-    this.averageSpeed = `${this.averageSpeed}${speedUnit}`;
+  showAverageSpeed() {
+    return this.averageSpeed;
   }
 }
